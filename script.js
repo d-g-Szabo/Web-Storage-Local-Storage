@@ -113,3 +113,34 @@ function loadPreferences() {
 }
 
 loadPreferences();
+
+const resetButton = document.getElementById("reset-button");
+resetButton.addEventListener("click", clearPreferences);
+
+// clear preferences
+function clearPreferences(event) {
+  event.preventDefault();
+
+  // clear the preferences
+  localStorage.removeItem("preferences");
+  // force reload the page
+  location.reload();
+}
+
+// Function to handle changes in local storage
+function handleLocalStorageChange(event) {
+  console.log(JSON.parse(window.localStorage.getItem("sampleList")));
+
+  if (event.key === "preferences") {
+    // Do something when the specific local storage key changes
+    const newValue = event.newValue;
+    console.log(`Local storage favouriteColour changed to: ${newValue}`);
+  }
+}
+
+// Add an event listener to listen for changes in local storage
+window.addEventListener("storage", () => {
+  handleLocalStorageChange;
+});
+
+window.onstorage = handleLocalStorageChange;

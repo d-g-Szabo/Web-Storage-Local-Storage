@@ -4,3 +4,7 @@ form {
   align-items: flex-start;
   gap: 1rem;
 }
+
+button {
+  margin-bottom: 1rem;
+}
